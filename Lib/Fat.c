@@ -5,6 +5,7 @@
 #include "Fat.h"
 #include "funt.h"
 
+/************************************* DEFINITION *******************************************
 #pragma pack(push) /* push current alignment to stack */
 #pragma pack(1)
 typedef struct
@@ -52,7 +53,9 @@ typedef struct
     uint32_t u32Size;
 }DirectoryEntry;
 #pragma pack(pop)
+/************************************** END OF DIFINITION ****************************************/
 
+/************************************** VARIABLE *******************************************/
 FILE * fp;
 uint8_t stt = 0;
 uint16_t adress[200];
@@ -66,6 +69,12 @@ uint16_t SecOfFat;
 uint8_t NumOfEntry;
 uint8_t flagentry = 0;
 
+/******************************************************************************************/
+
+/******************************************************************************************
+**CODE
+******************************************************************************************/
+
 int Init()
 {
     int flag = 1;
@@ -76,6 +85,9 @@ int Init()
     }
     return flag;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to initilize stream for handling file
+*****************************************************************************************/
 
 void Read_Boot()
 {
@@ -85,6 +97,9 @@ void Read_Boot()
     SecOfFat = (g_boot.u16SecPerFat * g_boot.u8FatCount);
     SecOfData = (g_boot.u16TotalSec - SecOfFat - SecOfRoot - 1);
 }
+/*************************************** Brief *******************************************
+    Funtion is used to Read the first sector of file (Boot Sector)
+*****************************************************************************************/
 
 void Print_Boot()
 {
@@ -107,6 +122,9 @@ void Print_Boot()
     Sector %d",SecOfData,SecOfFat + SecOfRoot + 1,g_boot.u16TotalSec);
     printf("\n");
 }
+/*************************************** Brief *******************************************
+    Funtion is used to Print Information of Boot Sector to Console
+*****************************************************************************************/
 
 void Read_Root(uint8_t SecNum)
 {
@@ -127,7 +145,6 @@ void Read_Root(uint8_t SecNum)
         if(g_entry->u8Attributes != 0x0F && g_entry->u8Name[0] != 0x00)
         {
             printf("%d\t",stt);
-            //adress =(uint16_t *)malloc(sizeof(uint16_t));
             adress[stt] = g_entry->u16FirstClusterLow;
             for(j = 0;j < 11;j++)
             {
@@ -156,6 +173,9 @@ void Read_Root(uint8_t SecNum)
     free(g_entry);
     return;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to Read the Root Directory
+*****************************************************************************************/
 
 void Read_Sector(uint16_t SecNum)
 {
@@ -221,6 +241,9 @@ void Read_Sector(uint16_t SecNum)
     free(g_entry);
     return;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to Read 1 Sector in File
+*****************************************************************************************/
 
 uint16_t Read_Fat(uint16_t index)
 {
@@ -247,6 +270,9 @@ uint16_t Read_Fat(uint16_t index)
     free(Fat);
     return index;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to Read the Fat Table in File
+*****************************************************************************************/
 
 void menu()
 {
@@ -371,3 +397,6 @@ void menu()
     fclose(fp);
     return;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to create UI and print to console
+*****************************************************************************************/

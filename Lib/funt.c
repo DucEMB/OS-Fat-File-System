@@ -16,6 +16,9 @@ void fat_time_modify(uint16_t time,uint16_t date)
     hour, minute, second, day, month, year);
     return;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to get the modify Time of the folder in file
+*****************************************************************************************/
 
 void fat_time_create(uint16_t time,uint16_t date)
 {
@@ -30,3 +33,6 @@ void fat_time_create(uint16_t time,uint16_t date)
     hour, minute, second, day, month, year);
     return;
 }
+/*************************************** Brief *******************************************
+    Funtion is used to get the create Time of the folder in file
+*****************************************************************************************/
