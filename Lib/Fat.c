@@ -5,7 +5,7 @@
 #include "Fat.h"
 #include "funt.h"
 
-/************************************* DEFINITION *******************************************
+/************************************* DEFINITION *******************************************/
 #pragma pack(push) /* push current alignment to stack */
 #pragma pack(1)
 typedef struct

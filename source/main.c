@@ -12,7 +12,7 @@ int main()
     }
     else
     {
-        printf("Input dau vao loi...");
+        printf("Input dau vao loi ...");
     }
     return 0;
 }
